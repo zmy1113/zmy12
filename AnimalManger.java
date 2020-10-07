@@ -1,4 +1,5 @@
 package zmy.AnimalManger;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -36,30 +37,28 @@ public class AnimalManger {
             }
         }
     }
-    static ArrayList<AnimalManger1>array=new ArrayList<>();
-    public static void showAnimal(ArrayList<AnimalManger1> array)
-    {//判断集合是否有动物信息
-        if(array.size()==0)
-        {
+
+    static ArrayList<Animal> array = new ArrayList<>();
+
+    public static void showAnimal(ArrayList<Animal> array) {//判断集合是否有动物信息
+        if (array.size() == 0) {
             System.out.println("对不起，目前没有动物信息");
             return;
         }
         System.out.println("种类\t\t\t性别\t\t\t年龄");
-        for(int i=0;i<array.size();i++) 
-        {
-            AnimalManger1 am=array.get(i);
-            System.out.println(am.getAnimal_species()+"\t\t\t"+am.getAnimal_sex()+"\t\t\t"+am.getAnimal_age());
+        for (Animal am : array) {
+            System.out.println(am.getAnimal_species() + "\t\t\t" + am.getAnimal_sex() + "\t\t\t" + am.getAnimal_age());
         }
-        
+
     }
-    public static void addAnimal(ArrayList<AnimalManger1> array) {
+
+    public static void addAnimal(ArrayList<Animal> array) {
         int a = 0;//作为检验是否重复的标志
         Scanner sc = new Scanner(System.in);
         System.out.println("请输入新的种类");
         String species = sc.nextLine();
-        for (int i = 0; i < array.size(); i++)
-        {
-            AnimalManger1 am1=array.get(i);//与已经添加的集合元素进行对比，如果相同则输出相应内容
+        //与已经添加的集合元素进行对比，如果相同则输出相应内容
+        for (Animal am1 : array) {
             if (am1.getAnimal_species().equals(species))//元素的species变量与刚获取的变量利用方法进行对比
             {
                 System.out.println("该种类已经存在，请重新输入");
@@ -69,43 +68,42 @@ public class AnimalManger {
         }
         if (a == 0) {
             System.out.println("请输入新动物性别：");
-            String sex1=sc.nextLine();
+            String sex1 = sc.nextLine();
             System.out.println("请输入新动物年龄：");
-            int Sage=sc.nextInt();
-            AnimalManger1 am2=new AnimalManger1();
+            int Sage = sc.nextInt();
+            Animal am2 = new Animal();
             am2.setAnimal_species(species);
             am2.setAnimal_sex(sex1);
             am2.setAnimal_age(Sage);
             array.add(am2);
             System.out.println("添加成功");
         }
+
     }
-    public static void remove(ArrayList<AnimalManger1> array)
-    {
-        Scanner sc=new Scanner(System.in);
+
+    public static void remove(ArrayList<Animal> array) {
+        Scanner sc = new Scanner(System.in);
         System.out.println("请输入要删除的动物种类");
-        String species=sc.nextLine();
-        for (int i = 0;i < array.size();i++)
-        {
-            AnimalManger1 am=array.get(i);
-            if(am.getAnimal_species().equals(species))
-             {
-                 array.remove(i);
-                 System.out.println("删除成功");
-                 break;
-             } else if(i==array.size()-1)
-            {
+        String species = sc.nextLine();
+        for (int i = 0; i < array.size(); i++) {
+            Animal am = array.get(i);
+            if (am.getAnimal_species().equals(species)) {
+                array.remove(i);
+                System.out.println("删除成功");
+                break;
+            } else if (i == array.size() - 1) {
                 System.out.println("查无此类，请重新输入");
                 remove(array);
             }
         }
     }
-    public static void change(ArrayList<AnimalManger1> array) {
+
+    public static void change(ArrayList<Animal> array) {
         Scanner sc = new Scanner(System.in);
         System.out.println("请输入要修改的动物的种类");
         String species = sc.nextLine();
         for (int i = 0; i < array.size(); i++) {
-            AnimalManger1 am1 = array.get(i);
+            Animal am1 = array.get(i);
             if (am1.getAnimal_species().equals(species)) {
                 System.out.println("请输入想要修改的内容：");
                 System.out.println("1 种类");
@@ -128,7 +126,8 @@ public class AnimalManger {
                         am1.setAnimal_age(sage);
                         System.out.println("修改成功");
                         break;
-                }break;
+                }
+                break;
             } else if (i == array.size() - 1) {
                 System.out.println("没有找到该种类，请重新输入");
                 change(array);
