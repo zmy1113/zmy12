@@ -126,6 +126,8 @@ public class AnimalManger {
                         am1.setAnimal_age(sage);
                         System.out.println("修改成功");
                         break;
+                    default:
+                        break;
                 }
                 break;
             } else if (i == array.size() - 1) {
